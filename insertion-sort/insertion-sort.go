@@ -7,16 +7,15 @@ func main() {
 	// sorting in increase order
 	fmt.Println("----------------- Start Ordering Ascending -----------------")
 	var a = []int{5, 2, 4, 6, 1, 3}
+	var b = make([]int, len(a))
+	copy(b, a)
 
-	var b = a
-	asc := sort(b, "asc")
+	asc := sort(a, "asc")
 	fmt.Println("\n-- Slice after ascending sort: ", asc, " --\r\n")
-
-	fmt.Println("")
 
 	// sorting in increase order
 	fmt.Println("\n----------------- Start Ordering Descending -----------------")
-	desc := sort(a, "desc")
+	desc := sort(b, "desc")
 	fmt.Println("\n-- Slice after descending sort: ", desc, " --\r\n")
 
 }
@@ -50,7 +49,7 @@ func sort(a []int, order string) []int {
 			// switch left element to right
 			a[i] = val
 
-			// decrement i
+			// decrement i for next iteration
 			i--
 			fmt.Println("Slice inside second for loop: ", a)
 		}
