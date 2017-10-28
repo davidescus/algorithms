@@ -34,10 +34,7 @@ func sort(a []int, order string) []int {
 		// work only if i is greater than index 0
 		for i > -1 {
 			// exit loop based on sorting type
-			if order == "asc" && a[i] < val {
-				break
-			}
-			if order == "desc" && a[i] > val {
+			if compare(a[i], val, order) {
 				break
 			}
 			// switch right element to left
@@ -50,4 +47,15 @@ func sort(a []int, order string) []int {
 		}
 	}
 	return a
+}
+
+func compare(v1 int, v2 int, order string) bool {
+	b := false
+	if order == "asc" {
+		b = v1 < v2
+	}
+	if order == "desc" {
+		b = v1 > v2
+	}
+	return b
 }
