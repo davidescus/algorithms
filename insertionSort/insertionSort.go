@@ -2,28 +2,27 @@ package main
 
 import "fmt"
 
-type Sort []int
+// signature of compare function
+type compare func(int, int) bool
+
+func asc(v1, v2 int) bool {
+	return v1 < v2
+}
+
+func desc(v1, v2 int) bool {
+	return v1 > v2
+}
 
 func main() {
 
 	var a = []int{5, 2, 4, 6, 1, 3}
 	fmt.Println("Original slice: ", a)
 
-	s := Sort(a)
-	fmt.Println("Ascending sort: ", s.sortAsc())
-
-	fmt.Println("Descendingsort: ", s.sortDesc())
+	fmt.Println("Ascending sort: ", sort(a, asc))
+	fmt.Println("Descending sort: ", sort(a, desc))
 }
 
-func (s Sort) sortAsc() []int {
-	return sort(s, "asc")
-}
-
-func (s Sort) sortDesc() []int {
-	return sort(s, "desc")
-}
-
-func sort(a []int, order string) []int {
+func sort(a []int, cmp compare) []int {
 
 	for j := 1; j < len(a); j++ {
 		// store current value of j
@@ -34,7 +33,7 @@ func sort(a []int, order string) []int {
 		// work only if i is greater than index 0
 		for i > -1 {
 			// exit loop based on sorting type
-			if compare(a[i], val, order) {
+			if cmp(a[i], val) {
 				break
 			}
 			// switch right element to left
@@ -47,15 +46,4 @@ func sort(a []int, order string) []int {
 		}
 	}
 	return a
-}
-
-func compare(v1 int, v2 int, order string) bool {
-	b := false
-	if order == "asc" {
-		b = v1 < v2
-	}
-	if order == "desc" {
-		b = v1 > v2
-	}
-	return b
 }
