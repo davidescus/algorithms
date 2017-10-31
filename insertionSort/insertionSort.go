@@ -5,10 +5,12 @@ import "fmt"
 // signature of compare function
 type compare func(int, int) bool
 
+// compare function for ordering asc
 func asc(v1, v2 int) bool {
 	return v1 < v2
 }
 
+// compare function for ordering desc
 func desc(v1, v2 int) bool {
 	return v1 > v2
 }
