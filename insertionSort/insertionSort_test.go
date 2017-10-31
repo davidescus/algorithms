@@ -9,7 +9,7 @@ type opt struct {
 }
 
 func TestEmptySlice(t *testing.T) {
-	value := sort([]int{}, "asc")
+	value := sort([]int{}, asc)
 	if cap(value) > 0 {
 		t.Error("Must return an empty slice, but return this: ", value)
 	}
@@ -63,11 +63,11 @@ func TestMultipleValueAscending(t *testing.T) {
 
 		var sorted []int
 		if cases.sortType == "asc" {
-			sorted = sort(cases.val, "asc")
+			sorted = sort(cases.val, asc)
 		}
 
 		if cases.sortType == "desc" {
-			sorted = sort(cases.val, "desc")
+			sorted = sort(cases.val, desc)
 		}
 
 		if len(sorted) != len(cases.expect) {
